@@ -68,7 +68,6 @@ html {
   align-items: center;
   font: bold 30px/1 "arial";
   display: flex;
-  transition: opacity 0.5s;
 }
 #tab1 section article.on {
   opacity: 1;

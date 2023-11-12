@@ -20,7 +20,13 @@ function activation(arr, idx) {
 }
 */
 class Tab {
-	constructor(el) {
+	constructor(el, opt) {
+		if (!el) return console.error('탭 프레임명은 필수입력 항목입니다.');
+		const defOpt = { activeClass: 'on', fadeSpeed: 0 };
+		const resultOpt = { ...defOpt, ...opt };
+		this.activeClass = resultOpt.activeClass;
+		this.fadeSpeed = resultOpt.fadeSpeed;
+
 		this.init(el);
 		this.bindingEvent();
 	}
@@ -29,6 +35,10 @@ class Tab {
 		this.el = document.querySelector(el);
 		this.btns = this.el.querySelectorAll('ul li');
 		this.boxs = this.el.querySelectorAll('section article');
+		this.boxs.forEach((el) => {
+			el.style.transitionProperty = 'opacity';
+			el.style.transitionDuration = this.fadeSpeed / 1000 + 's';
+		});
 	}
 
 	bindingEvent() {
@@ -43,9 +53,9 @@ class Tab {
 
 	activation(arr, idx) {
 		arr.forEach((el) => {
-			el.classList.remove('on');
+			el.classList.remove(this.activeClass);
 		});
 
-		arr[idx].classList.add('on');
+		arr[idx].classList.add(this.activeClass);
 	}
 }
