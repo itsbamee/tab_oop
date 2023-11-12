@@ -26,6 +26,7 @@ class Tab {
 		const resultOpt = { ...defOpt, ...opt };
 		this.activeClass = resultOpt.activeClass;
 		this.fadeSpeed = resultOpt.fadeSpeed;
+		this.eventBlock = false;
 
 		this.init(el);
 		this.bindingEvent();
@@ -43,7 +44,11 @@ class Tab {
 
 	bindingEvent() {
 		this.btns.forEach((btn, idx) => {
-			btn.addEventListener('click', () => {
+			btn.addEventListener('click', (e) => {
+				//현재 클릭한 버튼 요소에 활성화 된 클래스명이 있거나 this.eventBlock이 true이면 return으로 함수 호출 중지
+				if (e.currentTarget.classList.contains(this.activeClass) || this.eventBlock) return;
+				this.eventBlock = true;
+
 				[this.btns, this.boxs].forEach((el) => {
 					this.activation(el, idx);
 				});
@@ -52,10 +57,13 @@ class Tab {
 	}
 
 	activation(arr, idx) {
+		console.log('activation');
 		arr.forEach((el) => {
 			el.classList.remove(this.activeClass);
 		});
 
 		arr[idx].classList.add(this.activeClass);
+		//activeClass가 붙어서 활성화되고 fadeSpeed만큼 트랜지션 모션이 끝난 이후에 다시 eventBlock값을 false로 바꿔서 이벤트 연결 가능 처리
+		setTimeout(() => (this.eventBlock = false), this.fadeSpeed);
 	}
 }
