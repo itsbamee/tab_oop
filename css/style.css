@@ -33,6 +33,7 @@ html {
 
 #tab1 {
   width: 600px;
+  height: 350px;
   position: relative;
   margin: 50px auto;
   border: 1px solid #555;
@@ -60,6 +61,7 @@ html {
 #tab1 section article {
   width: 100%;
   position: absolute;
+  height: 300px;
   top: 50px;
   left: 0;
   padding: 50px;
