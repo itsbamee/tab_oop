@@ -38,6 +38,10 @@ class Tab {
 		this.boxs = this.el.querySelectorAll('section article');
 		this.setHeight(0);
 
+		//frame의 높이값에 transition속성 옵션 speed 값에 따로 동적 적용
+		this.el.style.transitionProperty = 'height';
+		this.el.style.transitionDuration = this.fadeSpeed / 1000 + 's';
+
 		this.boxs.forEach((el) => {
 			el.style.transitionProperty = 'opacity';
 			el.style.transitionDuration = this.fadeSpeed / 1000 + 's';

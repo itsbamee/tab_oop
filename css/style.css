@@ -36,12 +36,12 @@ html {
   position: relative;
   margin: 50px auto;
   border: 1px solid #555;
+  overflow: hidden;
 }
 #tab1 ul {
   width: 100%;
   display: flex;
   height: 50px;
-  position: relative;
   z-index: 3;
 }
 #tab1 ul li {
@@ -60,8 +60,9 @@ html {
 #tab1 section article {
   width: 100%;
   position: absolute;
-  bottom: 0;
+  top: 50px;
   left: 0;
+  padding: 50px;
   z-index: 1;
   opacity: 0;
   justify-content: center;
